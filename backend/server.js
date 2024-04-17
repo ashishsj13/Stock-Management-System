@@ -3,14 +3,12 @@ const { default: mongoose } = require("mongoose");
 require('dotenv').config();
 const app = express();
 const cors = require("cors");
-const PORT = process.env.PORT || 3000;
-const DATABASE_URL = process.env.DATABASE_URL;
-
+const PORT = 5000;
 app.use(cors());
 app.use(express.json());
 
 mongoose
-  .connect(DATABASE_URL)
+  .connect("mongodb://localhost:27017/Stock?retryWrites=true&w=majority")
   .then(() => {
     console.log("Database connected!");
   })
