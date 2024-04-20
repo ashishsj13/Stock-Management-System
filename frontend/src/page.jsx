@@ -5,16 +5,12 @@ import { NavLink } from 'react-router-dom';
 export default function Home() {
   return (
     <div className="relative h-screen overflow-hidden">
-      {/* Header */}
       <Header />
-      {/* Background image */}
         <div
           className="absolute inset-0 bg-cover bg-center"
           style={{ backgroundImage: "url('/image.jpg')" }}
         ></div>
-        {/* Overlay */}
         <div className="absolute inset-0 bg-black opacity-40"></div>
-        {/* Content */}
         <motion.div
           initial={{ y: '100%' }}
           animate={{ y: 0 }}

@@ -6,7 +6,8 @@ import Page from "./page"
 import ReadProduct from "./ReadProduct";
 import UpdateProduct from "./UpdateProduct";
 
-function App() {
+function App() 
+{
   return (
     <div>
       <Routes>
