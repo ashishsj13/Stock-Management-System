@@ -1,6 +1,7 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
+import Header from "./Header";
 
 const UpdateProduct = () => {
   const [inputProduct, setInputProduct] = useState({
@@ -44,53 +45,65 @@ const UpdateProduct = () => {
     // fetchAllUser();
   };
   return (
-    <div className="w-2/3 mx-auto mt-5">
-      <form onSubmit={handleSubmit}>
-        <h1>Update User</h1>
-        <div className="">
-          <label className=" text-sm text-gray-500 ">Name</label>
-          <input
-            type="text"
-            name="name"
-            className="block py-2.5 px-3 w-full text-sm text-gray-900 bg-transparent  border-2 border-gray-300"
-            placeholder="Enter name"
-            required
-            value={inputProduct.name}
-            onChange={handleChnage}
-          />
+    <>
+    <Header/>
+    <div class="container mx-auto my-8 text-center">
+    <h1 class="text-3xl font-semibold mb-6 ">Update Product</h1>
+    <form onSubmit={handleSubmit}>
+        <div class="text-lg font-semibold mb-4 grid grid-cols-3 items-center"> 
+            <label class="block mb-2 mx-80">Name: </label>
+            <div class="col-span-1"> 
+                <input
+                    type="text"
+                    name="name"
+                    class="w-full rounded-lg border border-gray-300 px-4 py-2"
+                    placeholder="Enter Name"
+                    required
+                    value={inputProduct.name}
+                    onChange={handleChnage}
+                    autocomplete="off"
+                />
+            </div>
         </div>
-        <div className="">
-          <label className=" text-sm text-gray-500 ">Quantity</label>
-          <input
-            type="number"
-            name="quantity"
-            className="block py-2.5 px-3 w-full text-sm text-gray-900 bg-transparent  border-2 border-gray-300"
-            placeholder="Enter Quantity "
-            required
-            value={inputProduct.quantity}
-            onChange={handleChnage}
-          />
+        <div class="text-lg font-semibold mb-4 grid grid-cols-3 items-center"> 
+            <label class="block mb-2 mx-80">Quantity: </label>
+            <div class="col-span-1"> 
+                <input
+                    type="number"
+                    name="quantity"
+                    class="w-full rounded-lg border border-gray-300 px-4 py-2"
+                    placeholder="Enter Quantity"
+                    required
+                    value={inputProduct.quantity}
+                    onChange={handleChnage}
+                    autocomplete="off"
+                />
+            </div>
         </div>
-        <div className="">
-          <label className=" text-sm text-gray-500 ">Price</label>
-          <input
-            type="number"
-            name="price"
-            className="block py-2.5 px-3 w-full text-sm text-gray-900 bg-transparent  border-2 border-gray-300"
-            placeholder="Enter Price "
-            required
-            value={inputProduct.price}
-            onChange={handleChnage}
-          />
+        <div class="text-lg font-semibold mb-4 grid grid-cols-3 items-center"> 
+            <label class="block mb-2 mx-80">Price: </label>
+            <div class="col-span-1"> 
+                <input
+                    type="number"
+                    name="price"
+                    class="w-full rounded-lg border border-gray-300 px-4 py-2"
+                    placeholder="Enter Price"
+                    required
+                    value={inputProduct.price}
+                    onChange={handleChnage}
+                    autocomplete="off"
+                />
+            </div>
         </div>
 
-        <div className="flex justify-center my-4">
-          <button type="submit" className="w-40 bg-purple-500 hover:bg-purple-600 text-white px-4 py-2 rounded-lg shadow-md font-semibold cursor-pointer">
-            Update Product
+        <div className="flex justify-center my-8">
+          <button type="submit" className="text-xl w-48 h-12 bg-purple-500 hover:bg-purple-600 text-white px-4 py-2 rounded-lg shadow-md font-semibold cursor-pointer">
+          Update Product
           </button>
         </div>
       </form>
     </div>
+    </>
   );
 };
 
