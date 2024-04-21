@@ -4,7 +4,6 @@ import { useParams } from "react-router-dom";
 
 const ReadProduct = () => {
   const { id } = useParams();
-  // data fetching all
   const [productData, setproductData] = useState([]);
   const fetchSingleProduct = async () => {
     const res = await axios.get(`http://localhost:5000/read/${id}`);
@@ -12,8 +11,8 @@ const ReadProduct = () => {
     setproductData(res.data);
   };
   useEffect(() => {
-    fetchSingleProduct();
-  }, []);
+    fetchSingleProduct([fetchSingleProduct]); 
+  }, );
   return (
     <div className="w-2/3 mx-auto mt-5">
       <div className="relative overflow-x-auto shadow-md">

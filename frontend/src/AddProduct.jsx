@@ -1,6 +1,5 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
-import { Link, NavLink } from "react-router-dom";
 import Header from "./Header";
 
 const Home = () => 
@@ -138,7 +137,7 @@ const Home = () =>
               </div>
             </div>
             <div className="flex justify-center my-8">
-              <button type="submit" className="text-xl w-48 h-12 bg-purple-500 hover:bg-purple-600 text-white px-4 py-2 rounded-lg shadow-md font-semibold cursor-pointer">
+              <button type="submit" className="text-xl w-48 h-12 bg-purple-500 hover:bg-purple-600 text-black px-4 py-2 rounded-lg shadow-md font-semibold cursor-pointer">
                 +Add Product
               </button>
             </div>

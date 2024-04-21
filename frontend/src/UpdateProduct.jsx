@@ -28,7 +28,7 @@ const UpdateProduct = () =>
 
   useEffect(() => 
   {
-    fetchSingleProduct();
+    fetchSingleProduct([fetchSingleProduct]);
   }, []);
 
   const handleInputChange = (event) => 
@@ -158,7 +158,7 @@ const UpdateProduct = () =>
             <div className="flex justify-center">
               <button
                 type="submit"
-                className="text-lg w-48 h-12 bg-purple-500 hover:bg-purple-600 text-white px-4 py-2 rounded-lg shadow-md font-semibold cursor-pointer"
+                className="text-lg w-48 h-12 bg-purple-500 hover:bg-purple-600 text-black px-4 py-2 rounded-lg shadow-md font-semibold cursor-pointer"
               >
                 Update Product
               </button>
