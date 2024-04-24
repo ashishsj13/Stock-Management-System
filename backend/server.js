@@ -2,13 +2,21 @@ const express = require("express");
 const { default: mongoose } = require("mongoose");
 const app = express();
 const cors = require("cors");
+const bcrypt = require("bcryptjs");
+const jwt = require("jsonwebtoken");
 const PORT = 5000;
 app.use(cors());
 const multer = require("multer"); 
 app.use(express.json());
 const path = require('path');
 app.use('/uploads', express.static(path.join(__dirname, 'uploads')));
+const crypto = require('crypto');
 
+const generateSecretKey = () => {
+  return crypto.randomBytes(32).toString('hex');
+};
+
+const secretKey = generateSecretKey();
 
 mongoose
   .connect("mongodb://localhost:27017/Stock?retryWrites=true&w=majority")
@@ -50,6 +58,52 @@ const productSchema = new mongoose.Schema
 );
 
 const Product = mongoose.model("Product", productSchema);
+
+const userSchema = new mongoose.Schema({
+  username: {
+    type: String,
+    required: true,
+    unique: true
+  },
+  password: {
+    type: String,
+    required: true
+  }
+});
+
+const User = mongoose.model("User", userSchema);
+
+app.post("/signup", async (req, res) => {
+  try {
+    const { username, password } = req.body;
+    const hashedPassword = await bcrypt.hash(password, 10);
+    const user = new User({ username, password: hashedPassword });
+    await user.save();
+    res.status(201).send("User created successfully");
+  } catch (error) {
+    res.status(400).send(error.message);
+  }
+});
+
+// Login Route
+app.post("/login", async (req, res) => {
+  try {
+    const { username, password } = req.body;
+    const user = await User.findOne({ username });
+    if (!user) {
+      throw new Error("User not found");
+    }
+    const isMatch = await bcrypt.compare(password, user.password);
+    if (!isMatch) {
+      throw new Error("Invalid password");
+    }
+    const token = jwt.sign({ userId: user._id }, secretKey, { expiresIn: "10m" });
+    res.send({ user, token });
+  } catch (error) {
+    res.status(400).send(error.message);
+  }
+});
+
 
 const storage = multer.diskStorage(
 {
